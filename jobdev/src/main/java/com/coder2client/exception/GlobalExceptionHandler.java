@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDetails> handleException(Exception exception, WebRequest request) {
             ErrorDetails errorDetails = new ErrorDetails(
@@ -18,4 +19,13 @@ public class GlobalExceptionHandler {
                     request.getDescription(false), LocalDateTime.now() );
             return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
+    @ExceptionHandler(ResourcesNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(Exception exception, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                exception.getMessage(),
+                "NOT FOUND",
+                request.getDescription(false), LocalDateTime.now() );
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
 }

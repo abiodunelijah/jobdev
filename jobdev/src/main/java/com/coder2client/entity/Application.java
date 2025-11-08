@@ -3,10 +3,12 @@ package com.coder2client.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,4 +27,8 @@ public class Application {
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
 
+    public Application(User user, Job job) {
+        this.user = user;
+        this.job = job;
+    }
 }

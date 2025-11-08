@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class JobMapper {
-    
+
     public static JobDto toDto(Job job) {
 
         return JobDto.builder()
@@ -26,8 +26,9 @@ public class JobMapper {
                 .title(jobDto.getTitle())
                 .company(jobDto.getCompany())
                 .description(jobDto.getDescription())
-                .postedDate(LocalDateTime.parse(jobDto.getPostedDate()))
+                .postedDate(jobDto.getPostedDate() != null
+                        ? LocalDateTime.parse(jobDto.getPostedDate())
+                        : LocalDateTime.now()) // Set current time if not provided
                 .build();
-
     }
 }

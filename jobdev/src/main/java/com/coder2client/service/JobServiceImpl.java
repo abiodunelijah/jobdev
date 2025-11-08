@@ -1,13 +1,12 @@
 package com.coder2client.service;
 
 import com.coder2client.dtos.JobDto;
-import com.coder2client.dtos.Response;
 import com.coder2client.entity.Job;
+import com.coder2client.exception.ResourcesNotFoundException;
 import com.coder2client.mapper.JobMapper;
 import com.coder2client.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,10 +34,33 @@ public class JobServiceImpl implements JobService {
         return allJobs.stream().map(JobMapper::toDto).collect(Collectors.toList());
     }
 
+    @Override
+    public JobDto updateJob(Long id, JobDto jobDto) {
 
+        log.info("updateJob");
+        Job job = jobRepository.findById(id).orElseThrow(() -> new ResourcesNotFoundException("Job not found"));
+        Job jobToUpdate = JobMapper.toEntity(jobDto);
 
+        return JobMapper.toDto(jobRepository.save(jobToUpdate));
+    }
 
+    @Override
+    public JobDto deleteJob(Long id) {
 
+        log.info("deleteJob");
+        Job job = jobRepository.findById(id).orElseThrow(() -> new ResourcesNotFoundException("Job not found"));
+        jobRepository.delete(job);
+        return JobMapper.toDto(job);
+    }
+
+    @Override
+    public JobDto getJobById(Long id) {
+
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new ResourcesNotFoundException("job not found"));
+
+        return JobMapper.toDto(job);
+    }
 
 
 }

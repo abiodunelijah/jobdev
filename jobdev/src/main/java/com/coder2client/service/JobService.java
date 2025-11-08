@@ -13,6 +13,9 @@ public interface JobService {
 
     JobDto createJob(JobDto jobDto);
     List<JobDto> getAllJobs();
+    JobDto updateJob(Long id, JobDto jobDto);
+    JobDto deleteJob(Long id);
+    JobDto getJobById(Long id);
 
 
 

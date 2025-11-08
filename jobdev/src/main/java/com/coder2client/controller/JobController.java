@@ -25,4 +25,20 @@ public class JobController {
     public ResponseEntity<List<JobDto>> getAllJobs() {
         return ResponseEntity.ok(jobService.getAllJobs());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<JobDto> getJobById(@PathVariable Long id) {
+        return ResponseEntity.ok(jobService.getJobById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<JobDto> updateJob(@PathVariable Long id, @RequestBody JobDto jobDto) {
+        return ResponseEntity.ok(jobService.updateJob(id, jobDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<JobDto> deleteJobById(@PathVariable Long id) {
+        return ResponseEntity.ok(jobService.deleteJob(id));
+    }
+
 }
