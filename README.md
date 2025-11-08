@@ -2,18 +2,6 @@
 
 A modern job portal REST API built with Spring Boot that enables users to browse job listings and apply for positions. The application provides a clean architecture for managing job postings and applications.
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [API Endpoints](#api-endpoints)
-- [Database Schema](#database-schema)
-- [Running the Application](#running-the-application)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
 
 ## ✨ Features
 
